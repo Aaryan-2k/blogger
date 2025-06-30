@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="px-40 flex flex-1 justify-center py-5">
+    <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+        <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+                <p class="text-white tracking-light text-[32px] font-bold leading-tight min-w-72">
+                    {{blog.blog_title}}
+                </p>
+                <button
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-[#2c3135] text-white text-sm font-medium leading-normal"
+                >
+                    <span class="truncate"><a href="\list\">Back</a></span>
+                </button>
+            </div>
+
+            <p class="text-gray-400 text-sm font-normal leading-normal">
+                    By {{ blog.user.username }}
+                <span class="mx-1">|</span> 
+                Published on: {{ blog.created_at|date:"M d, Y" }}
+            </p>
+
+        </div>
+        <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4">
+            {{blog.blog_text}}
+        </p>
+    </div>
+</div>
+{% endblock %}

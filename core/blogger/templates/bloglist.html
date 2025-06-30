@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-white tracking-light text-[32px] font-bold leading-tight min-w-72">Published Posts</p></div>
+           
+{% for blog in blogs %}
+            <div class="p-4">
+              <div class="flex items-stretch justify-between gap-4 rounded-xl">
+                <div class="flex flex-[2_2_0px] flex-col gap-4">
+                  <div class="flex flex-col gap-1">
+                    <p class="text-white text-[24px] font-bold leading-tight min-w-6">{{blog.blog_title}}</p>
+                    <p class="text-[#e2e6e8] text-sm font-normal leading-normal">By {{blog.user.username}} · Published on July 15, 2024</p>
+                    <p class="text-[#a2adb3] text-sm font-medium leading-normal">{{ blog.blog_text|truncatewords:50 }}</p>
+                  </div>
+                  <button
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#2c3135] text-white text-sm font-medium leading-normal w-fit"
+                  >
+                    <span class="truncate"><a href="/read/{{blog.id}}/">Read More</a></span>
+                  </button>
+                </div>
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
+                  style='background-image: url("/media/{{blog.blog_image}}"); background-size:contain; background-position: center; background-repeat: no-repeat;'
+                ></div>
+              </div>
+            </div>
+{% endfor %}
+          </div>
+        </div>
+    {% endblock %}
