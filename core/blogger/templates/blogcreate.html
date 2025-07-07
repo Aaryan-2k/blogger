@@ -5,14 +5,15 @@
     <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-white tracking-light text-[32px] font-bold leading-tight min-w-72">Create New Blog Post</p></div>
     
     <form method="post" enctype="multipart/form-data">
-      {% csrf_token %} {# This is CRUCIAL for Django security #}
+      {% csrf_token %} 
       
       <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
         <label class="flex flex-col min-w-40 flex-1">
           <p class="text-white text-base font-medium leading-normal pb-2">Blog Title</p>
           <input
-          name="blog_title" {# Add a name attribute #}
-          id="id_blog_title" {# Good practice to add an ID #}
+          name="blog_title"
+          re
+          id="id_blog_title"
           placeholder="Enter your blog title"
           class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#3c4a53] bg-[#1c2226] focus:border-[#3c4a53] h-14 placeholder:text-[#9daeb8] p-[15px] text-base font-normal leading-normal"
           value=""
@@ -24,8 +25,9 @@
         <label class="flex flex-col min-w-40 flex-1">
           <p class="text-white text-base font-medium leading-normal pb-2">Blog Content</p>
           <textarea
-          name="blog_content" {# Add a name attribute #}
-          id="id_blog_content" {# Good practice to add an ID #}
+          name="blog_content"
+          id="id_blog_content"
+          required
           placeholder="Write your blog post here"
           class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#3c4a53] bg-[#1c2226] focus:border-[#3c4a53] min-h-36 placeholder:text-[#9daeb8] p-[15px] text-base font-normal leading-normal"
           ></textarea>
@@ -42,10 +44,10 @@
                         <span class="truncate">Upload Image</span>
                         <input
                           type="file"
-                          name="blog_image" {# Add a name attribute #}
-                          id="id_blog_image" {# Link this ID to the label's for attribute #}
-                          class="hidden" {# Hide the default file input #}
-                          accept="image/*" {# Optional: restrict file types #}
+                          name="blog_image"
+                          id="id_blog_image"
+                          class="hidden" 
+                          accept="image/*" 
                         />
                     </label>
                   </div>
@@ -53,7 +55,7 @@
                 
                 <div class="flex px-4 py-3 justify-end">
                   <button
-                    type="submit" {# Change button type to submit #}
+                    type="submit"
                     class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#1993e5] text-white text-sm font-bold leading-normal tracking-[0.015em]"
                   >
                     <span class="truncate">Post</span>

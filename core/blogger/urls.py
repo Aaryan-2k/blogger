@@ -8,6 +8,7 @@ urlpatterns=[
     path("myblogs/", views.myblogs),
     path("read/<id>/", views.read_blog),
     path("update/<id>/", views.update_blog),
-    path("del/<id>", views.delete_blog_get),
-    path("del_confirm/<id>", views.delete_confirm),
+    path("del/<id>/", views.delete_blog_get),
+    path("del_confirm/<id>/", views.delete_confirm),
+    path("read_myblog/<id>/", views.read_myblog)
 ]

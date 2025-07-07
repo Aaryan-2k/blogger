@@ -1,44 +1,6 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
-    />
-
-    <title>Login Page!</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div class="relative flex size-full min-h-screen flex-col bg-[#111518] dark group/design-root overflow-x-hidden" style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#293238] px-10 py-3">
-          <div class="flex items-center gap-4 text-white">
-            <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path></svg>
-            </div>
-            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bloggr</h2>
-          </div>
-        </header>
+{% extends "base.html" %}
+{% block content %}
         <form method="post">{% csrf_token %}
-        <div id="alert-container" class="px-40 pt-5">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="p-4 mb-4 rounded-lg flex items-center justify-between
-                                {% if message.tags == 'success' %}bg-green-500 text-white
-                                {% elif message.tags == 'error' %}bg-red-500 text-white
-                                {% elif message.tags == 'info' %}bg-blue-500 text-white
-                                {% else %}bg-gray-700 text-white{% endif %}">
-                        <div>{{ message }}</div>
-                        <span class="cursor-pointer font-bold text-xl leading-none ml-4" onclick="this.parentElement.style.display='none';">&times;</span>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
         <div class="px-40 flex flex-1 justify-center py-5">
           <div class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
             <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-white tracking-light text-[32px] font-bold leading-tight min-w-72">Login</p></div>
@@ -46,6 +8,7 @@
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-white text-base font-medium leading-normal pb-2">Username</p>
                 <input name="username"
+                  required
                   placeholder="Enter your username"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#3c4a53] bg-[#1c2226] focus:border-[#3c4a53] h-14 placeholder:text-[#9daeb8] p-[15px] text-base font-normal leading-normal"
                   value=""
@@ -56,6 +19,8 @@
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-white text-base font-medium leading-normal pb-2">Password</p>
                 <input name="password"
+                  type="password"
+                  required
                   placeholder="Enter your password"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#3c4a53] bg-[#1c2226] focus:border-[#3c4a53] h-14 placeholder:text-[#9daeb8] p-[15px] text-base font-normal leading-normal"
                   value=""
@@ -64,15 +29,13 @@
             </div>
             <div class="flex px-4 py-3">
               <button type="submit"
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 flex-1 bg-[#1993e5] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+                class="flex min-w-[84px] max-w-[450px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 flex-1 bg-[#1993e5] text-white text-sm font-bold leading-normal tracking-[0.015em]"
               >
                 <span class="truncate">Login</span>
               </button>
             </div>
+            <p class="text-[#e2e6e8] text-sm font-normal leading-normal px-6 py-1">Dont have an account? <a href="/auth/register/" class="text-[#0096FF] px-1">Signup</a></p>
           </div>
         </div>
         </form>
-      </div>
-    </div>
-  </body>
-</html>
+{% endblock %}

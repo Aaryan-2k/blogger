@@ -19,6 +19,7 @@ def create_blog(request):
             img=None
         data={"blog_text":request.POST['blog_content'], "blog_title":request.POST['blog_title'],"blog_image":img,"user":request.user}
         blogs.objects.create(**data)
+        return redirect("/myblogs/")
 
     return render(request, "blogcreate.html")
 
@@ -44,9 +45,15 @@ def update_blog(request, id):
     return render(request,"blogupdate.html", {"blog":data})
 
 def delete_confirm(request, id):
-    blogs.objects.get(id=id).delete()
-    messages.warning(request,"The blog has been deleted!")
+    data=blogs.objects.get(id=id)
+    messages.error(request,f'''The blog "{data.blog_title}" has been deleted!''')
+    data.delete()
     return redirect("/myblogs/")
+
+def read_myblog(request,id):
+    if request.method=='POST':
+        pass
+    return render(request, "user_read.html", {"blog":blogs.objects.get(id=id)})
 
 def delete_blog_get(request, id):
     data=blogs.objects.get(id=id)
