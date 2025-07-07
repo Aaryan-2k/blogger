@@ -38,17 +38,17 @@
                   {% endif %}
                 </span>
             </button>
+            {% if request.user.is_authenticated %}
             <button
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#2c3135] text-white text-sm font-bold leading-normal tracking-[0.015em]"
               >
                 <span class="truncate">
-                  {% if request.user.is_authenticated %}<a href="/auth/logout">Logout
-                  {% else %}<a href="/auth/login">Login
-                  {% endif %}
-                </a>
-
+                  <a href="/auth/logout">Logout
+                  </a>
+                  
                 </span>
               </button>
+              {% endif %}
             {% if request.user.is_authenticated %}
               <div
               class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
@@ -61,9 +61,9 @@
             {% if messages %}
                 {% for message in messages %}
                     <div class="p-4 mb-4 rounded-lg flex items-center justify-between
-                                {% if message.tags == 'success' %}bg-green-500 text-white
+                                {% if message.tags == 'success' %}bg-green-800 text-white
                                 {% elif message.tags == 'error' %}bg-red-800 text-white
-                                {% elif message.tags == 'info' %}bg-blue-500 text-white
+                                {% elif message.tags == 'info' %}bg-blue-800 text-white
                                 {% else %}bg-gray-700 text-white{% endif %}">
                         <div>{{ message }}</div>
                         <span class="cursor-pointer font-bold text-xl leading-none ml-4" onclick="this.parentElement.style.display='none';">&times;</span>
